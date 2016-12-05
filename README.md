@@ -6,12 +6,11 @@ var List = MyString.split(", ");
     var StartPoint: Point = Point(0, 0);
     
    
-    var regEx1 = "[0-9]".toRegex();
-    var LetterList = List.joinToString("").split(regEx1);
+  
+    var LetterList = List.joinToString("").split("[0-9]".toRegex());
     LetterList = LetterList.filterNot({it.equals("")});
     
-    var regexA ="[L,R]".toRegex();
-    var NumberList =  List.joinToString("").split(regexA);
+    var NumberList =  List.joinToString("").split("[L,R]".toRegex());
     NumberList = NumberList.takeLast(NumberList.size-1);
 
     
@@ -29,7 +28,6 @@ var List = MyString.split(", ");
         return NewCurrentd;
     }
     
-   var P: Point = Point (0, 0);
 
     fun EndPoint (StartP: Point, LetterL: List<String>, NumberL: List<String>): Point{
         var d = "n"
@@ -49,9 +47,11 @@ var List = MyString.split(", ");
             }
         
     }
-        return StartP;
+        var EndPoint = StartP;
+        return EndPoint;
     }
     
+
     print (EndPoint (StartPoint, LetterList, NumberList));
 }
 
