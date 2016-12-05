@@ -7,16 +7,12 @@ var List = MyString.split(", ");
    
     var StartPoint: Point = Point(0, 0);
     
-   
-  
     var LetterList = List.joinToString("").split("[0-9]".toRegex());
     LetterList = LetterList.filterNot({it.equals("")});
     
     var NumberList =  List.joinToString("").split("[L,R]".toRegex());
     NumberList = NumberList.takeLast(NumberList.size-1);
-
     
-       
     fun direction (Currentd: String, move: String): String{
         var NewCurrentd = Currentd;
         if (NewCurrentd == "n" && move == "R") NewCurrentd = "e";
