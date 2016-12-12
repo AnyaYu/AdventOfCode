@@ -1,0 +1,40 @@
+
+import java.security.MessageDigest
+import jdk.nashorn.tools.ShellFunctions.input
+import java.math.BigInteger
+
+
+/**
+ * Created by anna on 12.12.2016.
+ */
+
+fun main (args: Array<String>) {
+    val input = "abbhdwsy"
+
+    fun getHash(input: String): String {
+        val bytesOfMessage = input.toByteArray(Charsets.UTF_8)
+        val md: MessageDigest = MessageDigest.getInstance("MD5")
+        md.update(bytesOfMessage)
+        val digest: ByteArray = md.digest()
+        val bigInt = BigInteger(1, digest)
+        val hashText = bigInt.toString(16)
+        return hashText
+    }
+
+    fun getPassword(input: String): String {
+        var password = ""
+        (0..10000000).forEach { i ->
+            val hash: String = getHash(input + i)
+            when {
+                password.length < 8 -> when {
+                    hash.length == 27 -> password += hash[0]
+                    hash.length < 27 -> password += "0"
+                }
+            }
+        }
+        return password
+    }
+    println(getPassword(input))
+}
+
+
